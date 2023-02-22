@@ -127,14 +127,37 @@ class LinkedList {
         }
         return array;
     }
+
+    // reverse single linked list
+    reverse() {
+        if (!this.head.next) {
+            return this.head;
+        }
+        let first = this.head;
+        this.tail = this.head;
+        let second = first.next;
+        // as long as second is not null
+        while (second) {
+            const temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+        this.head.next = null;
+        this.head = first;
+        return this;
+    }
 }
 
 myLinkedList = new LinkedList(10);
+myLinkedList.append(2);
 myLinkedList.append(5);
-myLinkedList.append(16);
-myLinkedList.prepend(1);
-myLinkedList.insert(99, 3);
-myLinkedList.removeAtIndex(3);
+myLinkedList.append(8);
+// myLinkedList.prepend(1);
+// myLinkedList.insert(99, 3);
+// myLinkedList.removeAtIndex(3);
 // myLinkedList.removeAtIndex(0);
 // myLinkedList.removeAtIndex(200);
-console.log(myLinkedList.printList());
+myLinkedList.reverse();
+// console.log(myLinkedList.printList());
+console.log(myLinkedList);
